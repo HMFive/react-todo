@@ -67,27 +67,60 @@ function App() {
 
   return (
     <div className="App">
-     <form onSubmit={
-       handleSubmit
-     }
-     >
-      <input
-        id="addTask" 
-        type="text"
-        onChange={(e) => setTodo(e.target.value)}
-        value = {todo}  
+      <form onSubmit={handleSubmit}>
+        <input
+          id="addTask"
+          type="text"
+          onChange={(e) => setTodo(e.target.value)}
+          value={todo}
         />
-      <button type="submit" className="waves-effect waves-ligh btn">Add Todo</button> 
-     </form>
-     {todos.map(
-       (todo) => 
-       <div key={todo.id}> 
-        {todoEditing === todo.id ? (<input id="addTask" type="text" onChange={(e) => setEditingText(e.target.value)} value={editingText} /> ) : ( <div>{todo.text}</div> )}  
-        <label><input type="checkbox" onChange={() => toggleComplete(todo.id)} checked={todo.completed} /> <span></span> </label>
-        {todoEditing === todo.id ? ( <button className="waves-effect waves-ligh btn" onClick={() => editTodo(todo.id) } >Submit Edit</button>) : (<button className="waves-effect waves-ligh btn" onClick= {() => setTodoEditing(todo.id) }>Edit</button>) }
-        <button className="waves-effect waves-ligh btn" onClick= {() => deleteTodo(todo.id) }>Delete</button>
-       </div>
-     )}
+        <button type="submit" className="waves-effect waves-ligh btn">
+          Add Todo
+        </button>
+      </form>
+      {todos.map((todo) => (
+        <div key={todo.id}>
+          {todoEditing === todo.id ? (
+            <input
+              id="addTask"
+              type="text"
+              onChange={(e) => setEditingText(e.target.value)}
+              value={editingText}
+            />
+          ) : (
+            <div>{todo.text}</div>
+          )}
+          <label>
+            <input
+              type="checkbox"
+              onChange={() => toggleComplete(todo.id)}
+              checked={todo.completed}
+            />{" "}
+            <span></span>{" "}
+          </label>
+          {todoEditing === todo.id ? (
+            <button
+              className="waves-effect waves-ligh btn"
+              onClick={() => editTodo(todo.id)}
+            >
+              Submit Edit
+            </button>
+          ) : (
+            <button
+              className="waves-effect waves-ligh btn"
+              onClick={() => setTodoEditing(todo.id)}
+            >
+              Edit
+            </button>
+          )}
+          <button
+            className="waves-effect waves-ligh btn"
+            onClick={() => deleteTodo(todo.id)}
+          >
+            Delete
+          </button>
+        </div>
+      ))}
     </div>
   );
 }
